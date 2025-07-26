@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['immat_id', 'type', 'path'];
+
+    public function immatriculation(){
+        return $this->belongsTo(Immatriculation::class, 'immat_id');
+    }
+
 }

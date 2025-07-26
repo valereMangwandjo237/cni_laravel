@@ -163,12 +163,20 @@
                 class="user-image rounded-circle shadow"
                 alt="User Image"
             />
-            <span class="d-none d-md-inline">Alexander Pierce</span>
+            <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
             <!--begin::Menu Footer-->
             <li class="user-footer">
-                <a href="#" class="btn btn-default">Deconnexion</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        <span class="btn btn-default">{{ __('Deconnexion') }}</span>
+                    </x-dropdown-link>
+                </form>
             </li>
             <!--end::Menu Footer-->
             </ul>
