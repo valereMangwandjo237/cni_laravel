@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImmatriculationController;
+use App\Http\Controllers\DashbordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +16,23 @@ use App\Http\Controllers\ImmatriculationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified'])->name('home');
+Route::middleware(['auth', 'verified'])->prefix('dashboard')->name('dash_')->group(function () {
+    Route::get('/', [DashbordController::class, 'index'])->name('home');
+    Route::get('/all', [DashbordController::class, 'all_immat'])->name('all');
+    Route::get('/validate', [DashbordController::class, 'validate_immat'])->name('validate');
+    Route::get('/wait', [DashbordController::class, 'wait_immat'])->name('wait');
+    Route::get('/block', [DashbordController::class, 'block_immat'])->name('block');
+    Route::get('/show/{id}', [DashbordController::class, 'show'])->name('show');
+    Route::post('/traiter/{id}', [DashbordController::class, 'traiter'])->name('traiter');
+});
+
 
 Route::get('/cni', function () {
     return view('front_ia');
 });
 
-
 Route::post('/enregistrer', [ImmatriculationController::class, 'store']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

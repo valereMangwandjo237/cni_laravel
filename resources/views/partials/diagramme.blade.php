@@ -1,5 +1,5 @@
 <div style="width: 40%; margin: auto;">
-        <h3>Répartition des documents</h3>
+        <h3>Répartition des documents: {{$totals}}</h3>
         <canvas id="pieChart"></canvas>
     </div>
 
@@ -7,10 +7,10 @@
         const ctx = document.getElementById('pieChart').getContext('2d');
 
         const data = {
-            labels: ['CNI', 'Passeport', 'Récépissé', 'Invalide'],
+            labels: ['Validées', 'En attente', 'Bloqué'],
             datasets: [{
-                data: [45, 25, 20, 10],
-                backgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545'],
+                data: [{{$valides}}, {{$verifies}}, {{$bloques}}],
+                backgroundColor: ['#198754', '#ffc107', '#dc3545'],
             }]
         };
 

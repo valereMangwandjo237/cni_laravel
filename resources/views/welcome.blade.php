@@ -1,37 +1,6 @@
 @extends("layouts.main_cni")
 
 @section("content_main")
-
-    <!--begin::App Main-->
-    <main class="app-main">
-    <!--begin::App Content Header-->
-    <div class="app-content-header">
-        <!--begin::Container-->
-        <div class="container-fluid">
-        <!--begin::Row-->
-        <div class="row">
-            <div class="col-sm-4">
-            <h3 class="mb-0">Dashboard</h3>
-            </div>
-            <div class="col-sm-4">
-                <img
-                src="./assets/img/logo_dgi.png" alt="AdminLTE Logo" class="brand-image"
-                width="50%" height="70%"
-            />
-            </div>
-
-            <div class="col-sm-4">
-            <ol class="breadcrumb float-sm-end">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-            </ol>
-            </div>
-        </div>
-        <!--end::Row-->
-        </div>
-        <!--end::Container-->
-    </div>
-    <!--end::App Content Header-->
     <!--begin::App Content-->
     <div class="app-content">
         <!--begin::Container-->
@@ -43,7 +12,7 @@
             <!--begin::Small Box Widget 1-->
             <div class="small-box text-bg-primary">
                 <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $totals }}</h3>
 
                 <p>Immatriculations totales</p>
                 </div>
@@ -59,7 +28,7 @@
                 ></path>
                 </svg>
                 <a
-                href="#"
+                href="{{route('dash_all')}}"
                 class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                 >
                 More info <i class="bi bi-link-45deg"></i>
@@ -72,7 +41,7 @@
             <!--begin::Small Box Widget 2-->
             <div class="small-box text-bg-success">
                 <div class="inner">
-                <h3>53</h3>
+                <h3>{{ $valides }}</h3>
 
                 <p>Validées</p>
                 </div>
@@ -88,7 +57,7 @@
                 ></path>
                 </svg>
                 <a
-                href="#"
+                href="{{route('dash_validate')}}"
                 class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                 >
                 More info <i class="bi bi-link-45deg"></i>
@@ -101,7 +70,7 @@
             <!--begin::Small Box Widget 3-->
             <div class="small-box text-bg-warning">
                 <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $verifies }}</h3>
 
                 <p>En attente</p>
                 </div>
@@ -117,7 +86,7 @@
                 ></path>
                 </svg>
                 <a
-                href="#"
+                href="{{route('dash_wait')}}"
                 class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
                 >
                 More info <i class="bi bi-link-45deg"></i>
@@ -130,7 +99,7 @@
             <!--begin::Small Box Widget 4-->
             <div class="small-box text-bg-danger">
                 <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $bloques }}</h3>
 
                 <p>Bloquées</p>
                 </div>
@@ -153,7 +122,7 @@
                 ></path>
                 </svg>
                 <a
-                href="#"
+                href="{{route('dash_block')}}"
                 class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                 >
                 More info <i class="bi bi-link-45deg"></i>
@@ -168,7 +137,6 @@
         @include("partials.diagramme")
         <!--end::Container-->
     </div>
-    <!--end::App Content-->
-    </main>
+
 
 @endsection

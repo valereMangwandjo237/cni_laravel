@@ -2,10 +2,10 @@
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="./index.html" class="brand-link">
+        <a href="{{ route('dash_home')}}" class="brand-link">
         <!--begin::Brand Image-->
         <img
-            src="./assets/img/logo_dgi.png"
+            src="{{ asset('/assets/img/logo_dgi.png') }}"
             alt="AdminLTE Logo"
             class="brand-image opacity-75 shadow"
         />
@@ -30,45 +30,45 @@
             id="navigation"
         >
             <li class="nav-item">
-                <a href="./docs/browser-support.html" class="nav-link active">
+                <a href="{{route('dash_home')}}" class="nav-link {{ active_class('home') }}">
                     <i class="nav-icon bi bi-speedometer"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('dash_all')}}" class="nav-link {{ active_class('dash_all') }}">
                     <p>
                         Totals
-                        <span class="nav-badge badge text-bg-secondary me-3">6</span>
+                        <span class="nav-badge badge text-bg-secondary me-3">{{$totals}}</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('dash_validate')}}" class="nav-link {{ active_class('dash_validate') }}">
                     <p>
                         Validées
-                        <span class="nav-badge badge text-bg-secondary me-3">6</span>
+                        <span class="nav-badge badge text-bg-secondary me-3">{{$valides}}</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('dash_wait')}}" class="nav-link {{ active_class('dash_wait') }}">
                     <p>
                         En attente
-                        <span class="nav-badge badge text-bg-secondary me-3">6</span>
+                        <span class="nav-badge badge text-bg-secondary me-3">{{$verifies}}</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('dash_block')}}" class="nav-link {{ active_class('dash_block') }}">
                     <p>
                         Bloquées
-                        <span class="nav-badge badge text-bg-secondary me-3">6</span>
+                        <span class="nav-badge badge text-bg-secondary me-3">{{$bloques}}</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-            <a href="./docs/browser-support.html" class="nav-link">
+            <a href="{{route('logout')}}" class="nav-link">
                 <i class="nav-icon bi bi-browser-edge"></i>
                 <p>Deconnexion</p>
             </a>
