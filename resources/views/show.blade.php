@@ -43,6 +43,13 @@
 
                         <button type="button" class="btn btn-success w-100 mb-3" onclick="valider()">Valider l'immatriculation</button>
                         <button type="button" class="btn btn-danger w-100" onclick="rejeter()">Refuser l'immatriculation</button>
+
+                        <div id="spinner" class="text-center my-3" style="display: none;">
+                            <div class="spinner-border text-danger" role="status">
+                                <span class="visually-hidden">Envoi du mail en cours...</span>
+                            </div>
+                            <p>Veillez patienter...</p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -74,6 +81,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById("form_action").value = "valider";
+
                     document.getElementById("immatrForm").submit();
                 }
             });
@@ -90,6 +98,10 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById("form_action").value = "rejeter";
+                    // Affiche le spinner
+                    document.getElementById('spinner').style.display = 'block';
+
+                    // Soumet le formulaire
                     document.getElementById("immatrForm").submit();
                 }
             });

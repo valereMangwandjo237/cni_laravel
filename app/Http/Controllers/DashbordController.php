@@ -61,12 +61,19 @@ class DashbordController extends Controller
 
         $immat->save();
 
-        $nom = $immat->nom . " " . $immat->prenom;
+        try {
 
-        // Envoi d'un mail
-        Mail::to($immat->email)->send(new NotificationImmatriculation($immat->created_at, $nom));
+            if ($action === 'rejeter') {
+                $nom = $immat->nom . ' ' . $immat->prenom;
+                Mail::to($immat->email)
+                    ->send(new NotificationImmatriculation($immat->created_at, $nom));
 
-        return redirect()->route('dash_home')->with('success', 'Immatriculation mise à jour.');
+                return redirect()->route('dash_home')->with('success', "Un mail a été envoyé à l'usager.");
+            }
+            return redirect()->route('dash_home')->with('success', "Immatriculation validée.");
+        } catch (\Exception $e) {
+            return redirect()->route('dash_home')->with('error', 'Erreur lors de l\'envoi du mail : ' . $e->getMessage());
+        }
     }
 
 }
