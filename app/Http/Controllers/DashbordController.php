@@ -66,7 +66,7 @@ class DashbordController extends Controller
         // Envoi d'un mail
         Mail::to($immat->email)->send(new NotificationImmatriculation($immat->created_at, $nom));
 
-        return redirect()->route('home')->with('success', 'Immatriculation mise à jour.');
+        return redirect()->route('dash_home')->with('success', 'Immatriculation mise à jour.');
     }
 
 }
