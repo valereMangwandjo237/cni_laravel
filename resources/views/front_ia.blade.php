@@ -263,39 +263,43 @@
 
                 console.log("Type du document: " + type_mod);
 
-                // 💾 → ENREGISTREMENT Laravel ici si tout est OK
-                const formToLaravel = new FormData();
-                formToLaravel.append("nom", document.getElementById("name").value);
-                formToLaravel.append("prenom", document.getElementById("prenom").value);
-                formToLaravel.append("lieu_de_naissance", document.getElementById("lieu").value);
-                formToLaravel.append("email", document.getElementById("email").value);
-                formToLaravel.append("numero", document.getElementById("id_cni").value);
-                formToLaravel.append("date_de_naissance", document.getElementById("date_naiss").value);
-                formToLaravel.append("photo_recto", document.getElementById("photo_recto").files[0]);
-                formToLaravel.append("photo_verso", document.getElementById("photo_verso").files[0]);
-                formToLaravel.append("status", getStatus(type_mod, result.interpretation));
+                // 💾 → ENREGISTREMENT Laravel ici si c'est pas un others
+                if (result.score_global != -1) {
+                    const formToLaravel = new FormData();
+                    formToLaravel.append("nom", document.getElementById("name").value);
+                    formToLaravel.append("prenom", document.getElementById("prenom").value);
+                    formToLaravel.append("lieu_de_naissance", document.getElementById("lieu").value);
+                    formToLaravel.append("email", document.getElementById("email").value);
+                    formToLaravel.append("numero", document.getElementById("id_cni").value);
+                    formToLaravel.append("date_de_naissance", document.getElementById("date_naiss").value);
+                    formToLaravel.append("photo_recto", document.getElementById("photo_recto").files[0]);
+                    formToLaravel.append("photo_verso", document.getElementById("photo_verso").files[0]);
+                    formToLaravel.append("status", getStatus(type_mod, result.interpretation));
 
-                // Envoi vers Laravel (assure-toi que la route /enregistrer existe côté Laravel)
-                fetch("/enregistrer", {
-                    method: "POST",
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: formToLaravel
-                })
-                .then(async (response) => {
-                    if (!response.ok) {
-                        const text = await response.text();
-                        throw new Error("Erreur serveur Laravel : " + text);
-                    }
-                    return response.json();  // OK si Laravel retourne bien du JSON
-                })
-                .then(data => {
-                    console.log("✅ Enregistrement Laravel :", data);
-                })
-                .catch(err => {
-                    console.error("❌ Erreur Laravel :", err.message);
-                });
+                    // Envoi vers Laravel (assure-toi que la route /enregistrer existe côté Laravel)
+                    fetch("/enregistrer", {
+                        method: "POST",
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: formToLaravel
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            const text = await response.text();
+                            throw new Error("Erreur serveur Laravel : " + text);
+                        }
+                        return response.json();  // OK si Laravel retourne bien du JSON
+                    })
+                    .then(data => {
+                        console.log("✅ Enregistrement Laravel :", data);
+                    })
+                    .catch(err => {
+                        console.error("❌ Erreur Laravel :", err.message);
+                    });
+
+                }
+
 
 
             } catch (error) {
