@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $valides = Immatriculation::where('status', 0)->count();
-            $bloques = Immatriculation::where('status', 2)->count();
-            $verifies = Immatriculation::where('status', 1)->count();
+            $bloques = Immatriculation::where('status', 1)->count();
+            $verifies = Immatriculation::where('status', 2)->count();
             $totals = Immatriculation::count();
 
             $view->with(compact('valides', 'bloques', 'verifies', 'totals'));

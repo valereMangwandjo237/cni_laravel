@@ -28,7 +28,7 @@ class DashbordController extends Controller
     }
 
     public function wait_immat(){
-        $immatriculations = Immatriculation::where('status', 1)
+        $immatriculations = Immatriculation::where('status', 2)
                             ->orderBy('created_at', 'desc')
                             ->paginate(10);
 
@@ -36,7 +36,7 @@ class DashbordController extends Controller
     }
 
     public function block_immat(){
-        $immatriculations = Immatriculation::where('status', 2)
+        $immatriculations = Immatriculation::where('status', 1)
                             ->orderBy('created_at', 'desc')
                             ->paginate(10);
 
@@ -56,7 +56,7 @@ class DashbordController extends Controller
         if ($action === 'valider') {
             $immat->status = 0;
         } elseif ($action === 'rejeter') {
-            $immat->status = 2;
+            $immat->status = 1;
         }
 
         $immat->save();
