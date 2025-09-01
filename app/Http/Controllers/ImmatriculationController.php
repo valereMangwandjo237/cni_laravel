@@ -8,7 +8,6 @@ use App\Models\Immatriculation;
 class ImmatriculationController extends Controller
 {
     public function store(Request $request){
-
         try {
             // Ton code de traitement ici...
             $immatriculation = Immatriculation::create([
@@ -27,6 +26,7 @@ class ImmatriculationController extends Controller
                 $immatriculation->images()->create([
                     'type' => 'recto',
                     'path' => $path_recto,
+                    'nature' => $request->nature
                 ]);
             }
 
@@ -35,6 +35,7 @@ class ImmatriculationController extends Controller
                 $immatriculation->images()->create([
                     'type' => 'verso',
                     'path' => $path_verso,
+                    'nature' => $request->nature
                 ]);
             }
 

@@ -22,4 +22,10 @@ class Immatriculation extends Model
     public function images(){
         return $this->hasMany(Image::class, 'immat_id');
     }
+
+    public function nature()
+    {
+        $image = $this->images()->first(); // récupère la première image liée
+        return $image ? $image->nature : null; // retourne sa nature ou null si aucune image
+    }
 }

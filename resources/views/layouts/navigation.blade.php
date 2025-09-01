@@ -94,6 +94,8 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+
+
             </div>
         </div>
     </div>

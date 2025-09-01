@@ -70,7 +70,15 @@
             <li class="nav-item">
             <a href="{{route('logout')}}" class="nav-link">
                 <i class="nav-icon bi bi-browser-edge"></i>
-                <p>Deconnexion</p>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <p :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Deconnexion') }}
+                    </p>
+                </form>
             </a>
             </li>
 

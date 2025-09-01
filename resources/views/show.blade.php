@@ -91,7 +91,7 @@
             Swal.fire({
                 title: "Confirmer le rejet ?",
                 text: "Un mail de refus sera envoyé à l'utilisateur.",
-                icon: "warning",
+                icon: "error",
                 showCancelButton: true,
                 confirmButtonText: "Oui, rejeter",
                 cancelButtonText: "Annuler"
